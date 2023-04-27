@@ -1,5 +1,19 @@
-const fs = require('fs')
-const { exit } = require('process')
+import express from 'express'
+import * as fs from 'fs'
+
+
+const server = express()
+
+const PORT = 8080
+const ready = () => console.log('server ready on port ' + PORT)
+
+server.listen(PORT, ready)
+
+const index_route = '/'
+const index_function = (req, res) => res.send('welcome to my API')
+server.get(index_route, index_function)
+
+
 
 class ProductManager {
     constructor(path) {
@@ -102,4 +116,4 @@ async function manager() {
     await manager.updateProduct(3, { name: 'pala' })
     await manager.deleteProduct(22)
 }
-manager()
+
