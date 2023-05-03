@@ -52,7 +52,7 @@ let query_function = (req, res) => {
     } else {
         return res.send({
             success: false,
-            products: 'not found'
+            product: 'not found'
         })
     }
 }
