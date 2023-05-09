@@ -1,5 +1,4 @@
 import * as fs from 'fs'
-import { exit } from 'process'
 
 
 class ProductManager {
@@ -33,7 +32,7 @@ class ProductManager {
             let data_json = JSON.stringify(this.products, null, 2)
             await fs.promises.writeFile(this.path, data_json)
             console.log('id´s created product: ' + data.id)
-            return 'id´s product: ' + data.id
+            return data
         } catch (error) {
             console.log(error)
             return 'error: creating product'
@@ -94,13 +93,4 @@ class ProductManager {
 
 }
 
-async function manager() {
-    let manager = new ProductManager('./data/products.json')
-    await manager.getProducts()
-    await manager.addProduct({ title: "Jabon", description: "Jabon de tocador ultra seco", price: 150, thumbnail: "sin imagen", code: "code", stock: 1 })
-    await manager.getProductById(2)
-    await manager.getProductById(33)
-    await manager.updateProduct(3, { name: 'pala' })
-    await manager.deleteProduct(22)
-}
-export default manager
+export default ProductManager
