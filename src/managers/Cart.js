@@ -77,6 +77,6 @@ class Cart {
     }
 }
 
-let cart = new Cart('./data/carts.json')
+let manager = new Cart('./src/data/carts.json')
 
-export default Cart
+export default manager
