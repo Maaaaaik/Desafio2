@@ -1,22 +1,14 @@
-<h1>E-Commerce</h1>
-<h2>Lista de productos!</h2>
-<div class="d-flex justify-content-evenly">
+<h1 class="m-5">E-Commerce</h1>
+<h2 class="m-4">Lista de productos</h2>
+<div class="d-flex flex-wrap justify-content-evenly">
     {{#each products}}
-    <div class="card" style="width: 15rem">
-        <ul>
-
-            <li>
-                <h3>{{title}}</h3>
-                <p>{{description}}</p>
-                <p>{{code}}</p>
-                <p>{{stock}}</p>
-                <p>{{category}}</p>
-                <p>{{status}}</p>
-                <img src="{{thumbnail}}" alt="{{title}}" />
-                <p>{{price}}</p>
-            </li>
-
-        </ul>
+    <div class="card m-1" style="width: 18rem;">
+        <img src="{{thumbnail}}" alt="{{title}}" />
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">{{description}}</p>
+            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+        </div>
     </div>
     {{/each}}
 </div>

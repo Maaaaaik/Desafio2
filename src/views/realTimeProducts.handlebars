@@ -1,21 +1,22 @@
-<h1>Lista de productos en tiempo real</h1>
-<ul id="productList">
-    <ul>
-        {{#each products}}
-        <li>
-            <h3>{{title}}</h3>
-            <p>{{description}}</p>
-            <p>{{code}}</p>
-            <p>{{stock}}</p>
-            <p>{{category}}</p>
-            <p>{{status}}</p>
-            <img src="{{thumbnail}}" alt="{{title}}" />
-            <p>{{price}}</p>
-        </li>
-        {{/each}}
+<div class="text-center">
+    <h1 class="text-center m-5">Lista de productos en tiempo real</h1>
+    <ul id="productList">
+        <div class="d-flex flex-wrap justify-content-evenly">
+            {{#each products}}
+            <li>
+                <div class="card m-1 text-start" style="width: 18rem;">
+                    <img src="{{thumbnail}}" alt="{{title}}" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{description}}</p>
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </div>
     </ul>
-</ul>
-
+</div>
 <form id="productForm">
     <input type="text" id="productName" placeholder="Nombre del producto">
     <button type="submit">Agregar producto</button>
