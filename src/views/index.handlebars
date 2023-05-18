@@ -1,18 +1,22 @@
-<h3>HOLA {{name}}</h3>
-{{#if last_name}}
-<h2>{{last_name}}</h2>
-{{else}}
-<h2>aca deberia haber un apellido, si existe</h2>
-{{/if}}
+<h1>E-Commerce</h1>
+<h2>Lista de productos!</h2>
 <div class="d-flex justify-content-evenly">
-    {{#each alumnos}}
+    {{#each products}}
     <div class="card" style="width: 15rem">
-        <img src={{this.photo}} class="card-img-top" style="width: 15rem;height:8rem">
-        <div class="card-body">
-            <h5 class="card-title">{{this.name}}</h5>
-            <p class="card-text">Alumno de backend.</p>
-            <span class="emit_data" class="btn btn-primary">+Info</span>
-        </div>
+        <ul>
+
+            <li>
+                <h3>{{title}}</h3>
+                <p>{{description}}</p>
+                <p>{{code}}</p>
+                <p>{{stock}}</p>
+                <p>{{category}}</p>
+                <p>{{status}}</p>
+                <img src="{{thumbnail}}" alt="{{title}}" />
+                <p>{{price}}</p>
+            </li>
+
+        </ul>
     </div>
     {{/each}}
 </div>

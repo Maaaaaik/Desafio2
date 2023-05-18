@@ -14,6 +14,32 @@ router.post('/', async (req, res, next) => {
         next(error)
     }
 })
+
+router.post('/:cid/product/:pid', async (req, res, next) => {
+    try {
+        let cartId = Number(req.params.cid);
+        let productId = Number(req.params.pid);
+
+        let cart = manager.read_cart(cartId);
+        if (!cart) {
+            return res.json({ status: 404, message: 'Cart not found' });
+        }
+
+        let existingProduct = cart.products.find(product => product.product === productId);
+        if (existingProduct) {
+            existingProduct.quantity++;
+        } else {
+            cart.products.push({ product: productId, quantity: 1 });
+        }
+
+        await manager.update_cart(cartId, cart);
+
+        return res.json({ status: 200, message: 'Product added to cart' });
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get('/', async (req, res, next) => {
     try {
         let all = manager.read_carts()
@@ -26,7 +52,7 @@ router.get('/', async (req, res, next) => {
         next(error)
     }
 })
-router.get('/:pid', async (req, res, next) => {
+router.get('/:cid', async (req, res, next) => {
     try {
         let id = Number(req.params.pid)
         let one = manager.read_cart(id)

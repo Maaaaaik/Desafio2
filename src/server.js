@@ -1,28 +1,31 @@
 import server from "./app.js"
 import { Server } from "socket.io"
+import http from 'http';
+
 
 const PORT = 8080
-const ready = () => console.log('server ready on port ' + PORT)
+const serverr = http.createServer(server);
 
-let http_server = server.listen(PORT, ready)
-let socket_server = new Server(http_server)
+server.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
 
-let contador = 0
+const io = new Server(serverr);
 
-socket_server.on(
-    'connection',
-    socket => {
-        console.log(`client ${socket.client.id} connected`)
-        socket.on(
-            'primer_conexion',
-            data => {
-                console.log(data.name)
-                contador++
-                socket_server.emit(
-                    'contador',
-                    { contador }
-                )
-            }
-        )
-    }
-)
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('createProduct', (product) => {
+
+        req.manager.add_product(product);
+
+        io.emit('productCreated', product);
+    });
+
+    socket.on('deleteProduct', (productId) => {
+
+        req.manager.destroy_product(productId);
+
+        io.emit('productDeleted', productId);
+    });
+});
