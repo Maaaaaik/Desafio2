@@ -1,12 +1,39 @@
 import { Router } from "express"
-import manager from "../../managers/Cart.js"
+import Cart from "../../models/carts.model.js"
 
 const router = Router()
 
+router.get('/', async (req, res, next) => {
+    try {
+        let all = await Cart.find()
+        if (all.length > 0) {
+            return res.json({ status: 200, all })
+        }
+        let message = 'not found'
+        return res.json({ status: 404, message })
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/:cid', async (req, res, next) => {
+    try {
+        let id = req.params.pid
+        let one = await Cart.findById(id)
+        if (one) {
+            return res.json({ status: 200, one })
+        }
+        let message = 'not found'
+        return res.json({ status: 404, message })
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/', async (req, res, next) => {
     try {
-        let response = await manager.add_cart(req.body)
-        if (response === 201) {
+        let response = await Cart.create(req.body)
+        if (response) {
             return res.json({ status: 201, message: 'cart created' })
         }
         return res.json({ status: 400, message: 'not created' })
@@ -17,10 +44,10 @@ router.post('/', async (req, res, next) => {
 
 router.post('/:cid/product/:pid', async (req, res, next) => {
     try {
-        let cartId = Number(req.params.cid);
+        let cartId = req.params.cid;
         let productId = Number(req.params.pid);
 
-        let cart = manager.read_cart(cartId);
+        let cart = Cart.findById(cartId);
         if (!cart) {
             return res.json({ status: 404, message: 'Cart not found' });
         }
@@ -32,7 +59,7 @@ router.post('/:cid/product/:pid', async (req, res, next) => {
             cart.products.push({ product: productId, quantity: 1 });
         }
 
-        await manager.update_cart(cartId, cart);
+        await Cart.findByIdAndUpdate(cartId, cart);
 
         return res.json({ status: 200, message: 'Product added to cart' });
     } catch (error) {
@@ -40,37 +67,13 @@ router.post('/:cid/product/:pid', async (req, res, next) => {
     }
 });
 
-router.get('/', async (req, res, next) => {
-    try {
-        let all = manager.read_carts()
-        if (all.length > 0) {
-            return res.json({ status: 200, all })
-        }
-        let message = 'not found'
-        return res.json({ status: 404, message })
-    } catch (error) {
-        next(error)
-    }
-})
-router.get('/:cid', async (req, res, next) => {
-    try {
-        let id = Number(req.params.pid)
-        let one = manager.read_cart(id)
-        if (one) {
-            return res.json({ status: 200, one })
-        }
-        let message = 'not found'
-        return res.json({ status: 404, message })
-    } catch (error) {
-        next(error)
-    }
-})
+
 router.put('/:pid', async (req, res, next) => {
     try {
-        let id = Number(req.params.pid)
+        let id = req.params.pid
         let data = req.body
-        let response = await manager.update_cart(id, data)
-        if (response === 200) {
+        let response = await Cart.findByIdAndUpdate(id, data)
+        if (response) {
             return res.json({ status: 200, message: 'cart updated' })
         }
         return res.json({ status: 404, message: 'not found' })
@@ -78,11 +81,12 @@ router.put('/:pid', async (req, res, next) => {
         next(error)
     }
 })
+
 router.delete('/:pid', async (req, res, next) => {
     try {
-        let id = Number(req.params.pid)
-        let response = await manager.destroy_cart(id)
-        if (response === 200) {
+        let id = req.params.pid
+        let response = await Cart.findByIdAndDelete(id)
+        if (response) {
             return res.json({ status: 200, message: 'cart deleted' })
         }
         return res.json({ status: 404, message: 'not found' })

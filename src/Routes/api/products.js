@@ -1,12 +1,12 @@
 import { Router } from "express"
-import manager from '../../managers/Product.js'
+import Product from "../../models/products.model.js"
 
 const router = Router()
 
 router.post('/', async (req, res, next) => {
     try {
-        let response = await manager.add_product(req.body)
-        if (response === 201) {
+        let response = await Product.create(req.body)
+        if (response) {
             return res.json({ status: 201, message: 'product created' })
         }
         return res.json({ status: 400, message: 'not created' })
@@ -15,8 +15,13 @@ router.post('/', async (req, res, next) => {
     }
 })
 router.get('/', async (req, res, next) => {
+    let page = 1
+    if (req.query.page) { page = req.query.page }
+    let limit = req.query.limit ?? 10
+    let title = req.query.title ? new RegExp(req.query.title, 'i') : ''
+    let category = req.query.category ? new RegExp(req.query.category, 'i') : ''
     try {
-        let products = manager.read_products()
+        let products = await Product.paginate({ title, category }, { limit, page })
         if (products.length > 0) {
             return res.json({ status: 200, products })
         }
@@ -28,8 +33,8 @@ router.get('/', async (req, res, next) => {
 })
 router.get('/:pid', async (req, res, next) => {
     try {
-        let id = Number(req.params.pid)
-        let product = manager.read_product(id)
+        let id = req.params.pid
+        let product = await Product.findById(id)
         if (product) {
             return res.json({ status: 200, product })
         }
@@ -41,10 +46,10 @@ router.get('/:pid', async (req, res, next) => {
 })
 router.put('/:pid', async (req, res, next) => {
     try {
-        let id = Number(req.params.pid)
+        let id = req.params.pid
         let data = req.body
-        let response = await manager.update_product(id, data)
-        if (response === 200) {
+        let response = await Product.findByIdAndUpdate(id, data)
+        if (response) {
             return res.json({ status: 200, message: 'product updated' })
         }
         return res.json({ status: 404, message: 'not found' })
@@ -54,9 +59,9 @@ router.put('/:pid', async (req, res, next) => {
 })
 router.delete('/:pid', async (req, res, next) => {
     try {
-        let id = Number(req.params.pid)
-        let response = await manager.destroy_product(id)
-        if (response === 200) {
+        let id = req.params.pid
+        let response = await Product.findByIdAndDelete(id)
+        if (response) {
             return res.json({ status: 200, message: 'product deleted' })
         }
         return res.json({ status: 404, message: 'not found' })
