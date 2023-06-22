@@ -3,34 +3,19 @@ import Product from "../../models/products.model.js"
 
 const router = Router()
 
-router.post('/', async (req, res, next) => {
-    try {
-        let response = await Product.create(req.body)
-        if (response) {
-            return res.json({ status: 201, message: 'product created' })
-        }
-        return res.json({ status: 400, message: 'not created' })
-    } catch (error) {
-        next(error)
-    }
-})
 router.get('/', async (req, res, next) => {
-    let page = 1
-    if (req.query.page) { page = req.query.page }
-    let limit = req.query.limit ?? 10
-    let title = req.query.title ? new RegExp(req.query.title, 'i') : ''
-    let category = req.query.category ? new RegExp(req.query.category, 'i') : ''
     try {
-        let products = await Product.paginate({ title, category }, { limit, page })
+        let products = await Product.find();
         if (products.length > 0) {
-            return res.json({ status: 200, products })
+            return res.json({ status: 200, products });
         }
-        let message = 'not found'
-        return res.json({ status: 404, message })
+        let message = 'No products found';
+        return res.json({ status: 404, message });
     } catch (error) {
-        next(error)
+        next(error);
     }
 })
+
 router.get('/:pid', async (req, res, next) => {
     try {
         let id = req.params.pid
@@ -44,6 +29,20 @@ router.get('/:pid', async (req, res, next) => {
         next(error)
     }
 })
+
+router.post('/', async (req, res, next) => {
+    try {
+        let response = await Product.create(req.body)
+        if (response) {
+            return res.json({ status: 201, message: 'product created' })
+        }
+        return res.json({ status: 400, message: 'not created' })
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 router.put('/:pid', async (req, res, next) => {
     try {
         let id = req.params.pid

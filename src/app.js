@@ -22,7 +22,7 @@ server.use((req, res, next) => {
 });
 
 
-server.use('/public', express.static('public'));
+server.use('', express.static('public'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use('/', router);
