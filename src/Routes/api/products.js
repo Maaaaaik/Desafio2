@@ -3,18 +3,24 @@ import Product from "../../models/products.model.js"
 
 const router = Router()
 
+
 router.get('/', async (req, res, next) => {
     try {
-        let products = await Product.find();
-        if (products.length > 0) {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 6;
+
+        const products = await Product.paginate({}, { page, limit });
+
+        if (products.docs.length > 0) {
             return res.json({ status: 200, products });
         }
+
         let message = 'No products found';
         return res.json({ status: 404, message });
     } catch (error) {
         next(error);
     }
-})
+});
 
 router.get('/:pid', async (req, res, next) => {
     try {

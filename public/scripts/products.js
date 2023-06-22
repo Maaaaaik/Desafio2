@@ -1,7 +1,8 @@
-fetch('/api/products')
+fetch('/api/products/')
     .then(res => res.json())
     .then(res => {
-        let templates = res.products.map(each => {
+
+        let templates = res.products.docs.map(each => {
             let template = `
         <div class="product-card">
             <img src="${each.thumbnail}" alt="Producto">

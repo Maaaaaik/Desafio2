@@ -16,12 +16,27 @@ fetch('/api/products/' + pid)
         </div>
         `;
         document.getElementById('product').innerHTML = template;
+        document.getElementById('addCart').addEventListener('click', async () => {
+            try {
+                const response = await fetch(`/api/cart/${pid}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId: pid })
+                });
+
+                const result = await response.json();
+                if (result.status === 200) {
+                    console.log('Producto agregado al carrito');
+                } else {
+                    console.log('Error al agregar el producto al carrito');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
     })
     .catch(err => console.log(err));
 
-let addCart = document.getElementById('addCart')
-addCart.addEventListener(event => (
-    fetch('
-    method: PUT')
 
-    ))

@@ -1,12 +1,12 @@
 document.getElementById("productForm").addEventListener("submit", function (event) {
     event.preventDefault();
-    var title = document.getElementById("title").value;
-    var description = document.getElementById("description").value;
-    var code = parseInt(document.getElementById("code").value);
-    var stock = parseInt(document.getElementById("stock").value);
-    var category = document.getElementById("category").value;
-    var thumbnail = document.getElementById("thumbnail").value;
-    var price = parseFloat(document.getElementById("price").value);
+    let title = document.getElementById("title").value;
+    let description = document.getElementById("description").value;
+    let code = parseInt(document.getElementById("code").value);
+    let stock = parseInt(document.getElementById("stock").value);
+    let category = document.getElementById("category").value;
+    let thumbnail = document.getElementById("thumbnail").value;
+    let price = parseFloat(document.getElementById("price").value);
 
     fetch("/api/products", {
         method: "POST",
