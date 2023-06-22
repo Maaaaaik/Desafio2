@@ -9,130 +9,75 @@
     "id": 1
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Shampoo",
+    "description": "Shampoo de uso diario",
+    "price": 200,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 10,
     "id": 2
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Acondicionador",
+    "description": "Acondicionador suavizante",
+    "price": 180,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
-    "id": 3,
-    "name": "pala"
+    "stock": 5,
+    "id": 3
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Crema facial",
+    "description": "Crema hidratante para el rostro",
+    "price": 250,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 8,
     "id": 4
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Desodorante",
+    "description": "Desodorante en aerosol",
+    "price": 120,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 12,
     "id": 5
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Gel de ducha",
+    "description": "Gel de ducha con aroma a cítricos",
+    "price": 180,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 6,
     "id": 6
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Cepillo de dientes",
+    "description": "Cepillo de dientes de cerdas suaves",
+    "price": 50,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 15,
     "id": 7
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
+    "title": "Pasta dental",
+    "description": "Pasta dental con flúor para una sonrisa brillante",
+    "price": 70,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 4,
     "id": 8
   },
   {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
+    "title": "Toalla de playa",
+    "description": "Toalla de playa de tamaño grande",
     "price": 150,
     "thumbnail": "sin imagen",
     "code": "code",
-    "stock": 1,
+    "stock": 3,
     "id": 9
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 10
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 11
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 12
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 13
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 14
-  },
-  {
-    "title": "Jabon",
-    "description": "Jabon de tocador ultra seco",
-    "price": 150,
-    "thumbnail": "sin imagen",
-    "code": "code",
-    "stock": 1,
-    "id": 15
   }
 ]
