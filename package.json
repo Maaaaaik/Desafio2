@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Maaaaaik/Desafio2#readme",
   "dependencies": {
+    "bootstrap": "^3.4.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",

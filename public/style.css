@@ -1,7 +1,112 @@
+@font-face {
+    font-family: 'product_sansbold_italic';
+    src: url('./fonts/product_sans_bold_italic-webfont.woff2') format('woff2'),
+        url('./fonts/product_sans_bold_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'product_sansbold';
+    src: url('./fonts/product_sans_bold-webfont.woff2') format('woff2'),
+        url('./fonts/product_sans_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'product_sansitalic';
+    src: url('./fonts/product_sans_italic-webfont.woff2') format('woff2'),
+        url('./fonts/product_sans_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'product_sansregular';
+    src: url('./fonts/product_sans_regular-webfont.woff2') format('woff2'),
+        url('./fonts/product_sans_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body {
+    margin: 0;
+    font-family: 'product_sansregular';
+}
+
+main {
+    height: 100%;
+}
+
+nav {
+    background-color: green;
+    height: 3.5rem;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    height: 3.5rem;
+
+}
+
+li {
+    border-radius: 20%;
+}
+
+li a {
+    text-decoration: none;
+
+}
+
+a:visited {
+    color: inherit;
+}
+
+.button {
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
 .product-card {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
+    margin: 1rem;
     width: 300px;
 }
 
