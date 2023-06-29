@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tu E-commerce</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="button"><a href="./index.html">Inicio</a></li>
+                <li class="button"><a href="./products.html">Productos</a></li>
+                <li class="button"><a href="./new_product.html">Nuevo Producto</a></li>
+                <li class="button"><a href="#">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="registerForm">
+        <div>
+            <label for="title">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="photo">Foto:</label>
+            <textarea id="photo" name="photo" required></textarea>
+        </div>
+        <div>
+            <label for="age">Edad:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required>
+        </div>
+        <div>
+            <input type="button" class="button" id='register' value="Register!">
+        </div>
+    </form>
+
+</body>
+<script src="./scripts/register.js"></script>

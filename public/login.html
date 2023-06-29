@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Log in</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="button"><a href="./index.html">Inicio</a></li>
+                <li class="button"><a href="./products.html">Productos</a></li>
+                <li class="button"><a href="./new_product.html">Nuevo Producto</a></li>
+                <li class="button"><a href="#">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="loginForm">
+        <div>
+            <label for="title">Email:</label>
+            <input type="mail" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="description">Constraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <input type="button" class="button" id='login' value="Log In!">
+        </div>
+    </form>
+
+</body>
+<script src="./scripts/login.js"></script>

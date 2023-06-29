@@ -1,5 +1,6 @@
 import { Router } from "express"
 import Product from "../../models/products.model.js"
+import auth from "../../middlewares/auth.js"
 
 const router = Router()
 
@@ -36,7 +37,7 @@ router.get('/:pid', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
     try {
         let response = await Product.create(req.body)
         if (response) {
@@ -47,6 +48,7 @@ router.post('/', async (req, res, next) => {
         next(error)
     }
 })
+
 
 
 router.put('/:pid', async (req, res, next) => {
