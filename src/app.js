@@ -8,33 +8,33 @@ import { __dirname } from './utils.js';
 import manager from './managers/Product.js';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser'
-import expressSession from 'express-session';
-import mongoStore from 'connect-mongo';
+import expressSession from 'express-session'
+import mongoStore from 'connect-mongo'
 import morgan from 'morgan'
-import session from 'express-session';
+import passport from 'passport'
+import inicilizePassport from "./config/passport.js"
 
 const server = express();
-
 
 server.engine('handlebars', engine());
 server.set('view engine', 'handlebars');
 server.set('views', __dirname + '/views');
-
 
 server.use((req, res, next) => {
     req.manager = manager;
     next();
 });
 
-server.use(session({
+server.use(expressSession({
     secret: process.env.SECRET_SESSION,
     resave: true,
     saveUninitialized: true,
     store: mongoStore.create({
-        mongoUrl: process.env.MONGO,
+        mongoUrl: "mongodb+srv://Mikel:maik1234@cluster0.tqkzav1.mongodb.net/ecommerce",
         ttl: 30000
     })
 }))
+
 server.use(cookieParser())
 server.use('', express.static('public'));
 server.use(express.json());
@@ -43,6 +43,9 @@ server.use('/', router);
 server.use(error_handler);
 server.use(not_found_handler);
 server.use(morgan('dev'))
+inicilizePassport()
+server.use(passport.initialize())
+server.use(passport.session())
 
 
 connect('mongodb+srv://Mikel:maik1234@cluster0.tqkzav1.mongodb.net/ecommerce')

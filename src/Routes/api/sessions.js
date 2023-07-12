@@ -23,7 +23,7 @@ session_router.post('/login', async (req, res, next) => {
     }
 })
 
-router.post('/signout', async (req, res, next) => {
+session_router.post('/signout', async (req, res, next) => {
     try {
         req.session.destroy()
         return res.status(200).json({

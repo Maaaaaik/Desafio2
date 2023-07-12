@@ -1,43 +1,50 @@
 import Router from "express";
-import User from "../../models/users.model";
-import validator from "../../middlewares/validator";
-import password8 from "../../middlewares/password8";
+import User from "../../models/users.model.js";
+import validator from "../../middlewares/validator.js";
+import password8 from "../../middlewares/password8.js";
+import create_hash from "../../middlewares/create_hash.js";
+import is_valid_password from "../../middlewares/is_valid_password.js";
+import passport from "passport";
 
 const auth_router = Router()
+auth_router.post('/register',
+    validator,
+    password8,
+    create_hash,
+    passport.authenticate(
+        'register',
+        { failureRedirect: '/api/auth/fail-register' }
+    ),
+    (req, res) => res.status(201).json({
+        success: true,
+        message: "user created"
+    })
+)
 
-auth_router.post('/register', validator, password8, async (req, res, next) => {
+auth_router.get('/fail-register', (req, res) => res.status(401).json({
+    success: false,
+    message: 'auth error'
+}))
+
+auth_router.post('/signin', password8, passport.authenticate('signin', { failureRedirect: '/api/auth/fail-signin' }), is_valid_password, (req, res, next) => {
     try {
-        await User.create(req.body)
-        return res.status(201).json({
+        const { email } = req.body
+        req.session.email = email
+        req.session.role = one.role
+        return res.status(200).json({
             success: true,
-            message: "user created"
+            message: "user signed in"
         })
     } catch (error) {
         next(error)
     }
 })
 
-auth_router.post('/signin', async (req, res, next) => {
-    try {
-        const { email } = req.body
-        const one = await User.findOne({ email })
-        if (one) {
-            req.session.email = email
-            req.session.role = one.role
-            return res.status(200).json({
-                success: true,
-                message: "user signed in"
-            })
-        } else {
-            return res.status(404).json({
-                success: false,
-                message: "user not found"
-            })
-        }
-    } catch (error) {
-        next(error)
-    }
-})
+auth_router.get('/fail-signin', (req, res) => res.status(401).json({
+    success: false,
+    message: 'auth error'
+}))
+
 
 auth_router.post('/signout', async (req, res, next) => {
     try {
